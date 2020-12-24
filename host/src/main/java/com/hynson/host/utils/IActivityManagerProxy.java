@@ -43,6 +43,8 @@ public class IActivityManagerProxy implements InvocationHandler {
             // 通过stubIntent赋值给args，从而将启动目标变为StubActivity，以此达到通过AMS校验的目的
             args[index] = stubIntent;
         }
+        //class android.app.ActivityManagerProxy
+        Log.i(TAG, "invoke: "+mActivityManager.getClass());
         return method.invoke(mActivityManager, args);
     }
 }

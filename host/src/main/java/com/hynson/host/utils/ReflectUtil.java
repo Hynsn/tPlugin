@@ -3,28 +3,79 @@ package com.hynson.host.utils;
 import java.lang.reflect.Field;
 
 /**
- * Created by liuxiaobo on 2018/11/8.
+ * Created by hynson on 2020/12/23.
  */
 
 public class ReflectUtil {
 
-    public static Field getField(Class clazz, String fieldName) throws Exception {
-        Field field = clazz.getDeclaredField(fieldName);
+    /**
+     * className 不公用
+     * @param className
+     * @param fieldName
+     * @param access
+     * @return
+     * @throws Exception
+     */
+    public static Field getField(String className, String fieldName,boolean access) throws Exception {
+        Class<?> clazz = Class.forName(className);
+        Field field = access ? clazz.getField(fieldName) : clazz.getDeclaredField(fieldName);
         if (!field.isAccessible()) {
             field.setAccessible(true);
         }
         return field;
     }
 
-    public static Object getField(Class clazz, String fieldName, Object obj) throws Exception {
-        Field field = clazz.getDeclaredField(fieldName);
+    /**
+     * clazz 外部公用
+     * @param clazz
+     * @param fieldName
+     * @param access
+     * @return
+     * @throws Exception
+     */
+    public static Field getField(Class clazz, String fieldName, boolean access) throws Exception {
+        Field field = access ? clazz.getField(fieldName) : clazz.getDeclaredField(fieldName);
+        if (!field.isAccessible()) {
+            field.setAccessible(true);
+        }
+        return field;
+    }
+
+    /**
+     * className不公用
+     *
+     * @param className
+     * @param fieldName
+     * @param access
+     * @return
+     * @throws Exception
+     */
+    public static Object get(String className,String fieldName,boolean access) throws Exception{
+        Class<?> clazz = Class.forName(className);
+        Field field = access ? clazz.getField(fieldName) : clazz.getDeclaredField(fieldName);
+        if (!field.isAccessible()) {
+            field.setAccessible(true);
+        }
+        return field.get(clazz);
+    }
+
+    public static Object get(Class clazz,String fieldName,boolean access) throws Exception{
+        Field field = access ? clazz.getField(fieldName) : clazz.getDeclaredField(fieldName);
+        if (!field.isAccessible()) {
+            field.setAccessible(true);
+        }
+        return field.get(clazz);
+    }
+
+    public static Object get(Object obj, String fieldName,boolean access) throws Exception {
+        Field field = access ? obj.getClass().getField(fieldName) : obj.getClass().getDeclaredField(fieldName);
         if (!field.isAccessible()) {
             field.setAccessible(true);
         }
         return field.get(obj);
     }
 
-    public static void setField(Class clazz, String fieldName, Object obj, Object value) throws Exception {
+    public static void set(Class clazz, String fieldName, Object obj, Object value) throws Exception {
         Field field = clazz.getDeclaredField(fieldName);
         if (!field.isAccessible()) {
             field.setAccessible(true);

@@ -14,14 +14,18 @@ public class LoadUtil {
 
     public static void loadClass(Context context){
         try {
+            /*
             Class<?> dexPathListClass = Class.forName("dalvik.system.DexPathList");
             Field dexElementsField = dexPathListClass.getDeclaredField("dexElements");
             dexElementsField.setAccessible(true);
-
+*/
+            Field dexElementsField = ReflectUtil.getField("dalvik.system.DexPathList","dexElements",false);
+            /*
             Class<?> classLoaderClass = Class.forName("dalvik.system.BaseDexClassLoader");
             Field pathListField = classLoaderClass.getDeclaredField("pathList");
             pathListField.setAccessible(true);
-
+*/
+            Field pathListField = ReflectUtil.getField("dalvik.system.BaseDexClassLoader","pathList",false);
             // 1. 获取宿主的
             ClassLoader pathClassLoader = context.getClassLoader();
             Object hostPathList = pathListField.get(pathClassLoader);

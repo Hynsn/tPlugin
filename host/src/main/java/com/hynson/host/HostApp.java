@@ -22,11 +22,12 @@ public class HostApp extends Application {
         Log.i(TAG, "attachBaseContext: ");
         try {
             // 通过Hook IActivityManager实现Activity插件化
-//            HookHelper.hookAMS();
-//            HookHelper.hookHandler();
+            HookHelper.hookAMS();
+            HookHelper.hookHandler();
 
             // 通过Hook Instrumentation实现Activity插件化
-            HookHelper.hookInstrumentation(base);
+            //HookHelper.hookInstrumentation(base);
+            //HookHelper.hookInstrumentation1(base);
         } catch (Exception e) {
             e.printStackTrace();
         }

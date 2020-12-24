@@ -9,6 +9,7 @@ import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.List;
  */
 
 public class InstrumentationProxy extends Instrumentation {
-
+    final static String TAG = InstrumentationProxy.class.getSimpleName();
     private Instrumentation mInstrumentation;
     private PackageManager mPackageManager;
 
@@ -41,6 +42,7 @@ public class InstrumentationProxy extends Instrumentation {
         try {
             Method execMethod = Instrumentation.class.getDeclaredMethod("execStartActivity",
                     Context.class, IBinder.class, IBinder.class, Activity.class, Intent.class, int.class, Bundle.class);
+            Log.i(TAG, "execStartActivity: "+infos.toString());
             // 通过反射调用execStartActivity方法，将启动目标变为StubActivity,以此达到通过AMS校验的目的
             return (ActivityResult) execMethod.invoke(mInstrumentation, who, contextThread, token,
                     target, intent, requestCode, options);
