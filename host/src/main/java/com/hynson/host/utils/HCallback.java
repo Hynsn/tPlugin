@@ -22,9 +22,9 @@ public class HCallback implements Handler.Callback {
                 Intent stubIntent = (Intent) ReflectUtil.get(obj, "intent", false);
 
                 // 获取启动PluginActivity的Intent(之前保存在启动SubActivity的Intent之中)
-                Intent pluginIntent = stubIntent.getParcelableExtra(HookHelper.PLUGIN_INTENT);
+                Intent pluginIntent = stubIntent.getParcelableExtra(HookManager.PLUGIN_INTENT);
 
-                Log.i("TAG", "handleMessage: "+(pluginIntent==null)+","+(stubIntent==null));
+                Log.i("TAG", "handleMessage: "+(pluginIntent==null)+","+(stubIntent==null)+","+msg.toString());
                 if(pluginIntent!=null) {
                     Log.i("TAG", "handleMessage:1 ");
                     // 将启动SubActivity的Intent替换为启动PluginActivity的Intent

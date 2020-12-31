@@ -38,7 +38,7 @@ public class IActivityManagerProxy implements InvocationHandler {
             stubIntent.setClassName("com.hynson.host",
                     "com.hynson.host.ProxyActivity");
             // 将启动PluginActivity的Intent保存在subIntent中，便于之后还原
-            stubIntent.putExtra(HookHelper.PLUGIN_INTENT, pluginIntent);
+            stubIntent.putExtra(HookManager.PLUGIN_INTENT, pluginIntent);
 
             // 通过stubIntent赋值给args，从而将启动目标变为StubActivity，以此达到通过AMS校验的目的
             args[index] = stubIntent;

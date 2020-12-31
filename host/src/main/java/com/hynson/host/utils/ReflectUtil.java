@@ -1,6 +1,7 @@
 package com.hynson.host.utils;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 /**
  * Created by hynson on 2020/12/23.
@@ -81,5 +82,13 @@ public class ReflectUtil {
             field.setAccessible(true);
         }
         field.set(obj, value);
+    }
+
+    public static Object getNullMethod(Class clazz,String methodName,boolean all) throws Exception{
+        Method method = all ? clazz.getMethod(methodName):clazz.getDeclaredMethod(methodName);
+        if(!method.isAccessible()) {
+            method.setAccessible(true);
+        }
+        return method.invoke(null);
     }
 }

@@ -35,7 +35,7 @@ public class InstrumentationProxy extends Instrumentation {
         List<ResolveInfo> infos = mPackageManager.queryIntentActivities(intent, PackageManager.MATCH_ALL);
         if (infos == null || infos.size() == 0) {
             // 要启动的Activity没有注册，则将启动它的Intent保存在Intent中，便于之后还原
-            intent.putExtra(HookHelper.PLUGIN_INTENT, intent.getComponent().getClassName());
+            intent.putExtra(HookManager.PLUGIN_INTENT, intent.getComponent().getClassName());
             // 替换要启动的Activity为StubActivity
             intent.setClassName(who, "com.hynson.host.ProxyActivity");
         }
@@ -54,7 +54,7 @@ public class InstrumentationProxy extends Instrumentation {
 
     public Activity newActivity(ClassLoader cl, String className, Intent intent) throws InstantiationException,
             IllegalAccessException, ClassNotFoundException {
-        String intentName = intent.getStringExtra(HookHelper.PLUGIN_INTENT);
+        String intentName = intent.getStringExtra(HookManager.PLUGIN_INTENT);
         if (!TextUtils.isEmpty(intentName)) {
             // 还原启动目标Activity
             return super.newActivity(cl, intentName, intent);
