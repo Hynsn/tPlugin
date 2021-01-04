@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.FragmentActivity;
 
-public class ProxyActivity extends FragmentActivity {
+public class ProxyActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

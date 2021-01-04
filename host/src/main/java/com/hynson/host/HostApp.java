@@ -11,6 +11,8 @@ import com.argusapm.android.network.upload.CollectDataSyncUpload;
 import com.hynson.host.utils.HookManager;
 import com.hynson.host.utils.LoadUtil;
 
+import me.weishu.reflection.Reflection;
+
 public class HostApp extends Application {
     final static String TAG = HostApp.class.getSimpleName();
     private Context mContext;
@@ -22,6 +24,7 @@ public class HostApp extends Application {
     @Override
     protected void attachBaseContext(final Context base) {
         super.attachBaseContext(base);
+        Reflection.unseal(base);
         mContext = base;
         Config.ConfigBuilder builder = new Config.ConfigBuilder()
                 .setAppContext(this)

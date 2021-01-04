@@ -2,17 +2,26 @@ package com.hynson.plugin;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.fragment.app.FragmentActivity;
 
-public class MainActivity extends BaseActivity {
+import java.util.zip.Inflater;
+
+public class MainActivity extends FragmentActivity {
 
     final static String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        try {
+            setContentView(R.layout.activity_main);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
         Log.i(TAG, "onCreate: "+R.layout.activity_main);
         Log.i("TAG", "插件的onCreate: ");
     }

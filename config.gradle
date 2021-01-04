@@ -1,0 +1,26 @@
+ext {
+    android = [
+            compileSdkVer: 29,
+            buildToolsVer: "29.0.3",
+            minSdkVer    : 19,
+            targetSdkVer : 29,
+            verCode      : 1,
+            verName      : "1.0.0"
+    ]
+    def dependVer = [
+        appcompat       : "1.2.0",
+        constraintlayout: "2.0.4",
+        testJunit       : "1.1.2",
+        testEspresso    : "3.3.0",
+        junit           : "4.13.1",
+        freeReflect     : "2.2.0"
+    ]
+    dependencies = [
+        "appcompat"         : "androidx.appcompat:appcompat:${dependVer.appcompat}",
+        "constraintlayout"  : "androidx.constraintlayout:constraintlayout:${dependVer.constraintlayout}",
+        "junit"             : "junit:junit:${dependVer.junit}",
+        "testJunit"         : "androidx.test.ext:junit:${dependVer.testJunit}",
+        "testEspresso"      : "androidx.test.espresso:espresso-core:${dependVer.testEspresso}",
+        "freeReflect"       : "me.weishu:free_reflection:${dependVer.freeReflect}"
+    ]
+}
